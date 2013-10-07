@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4ED0DBC2-A0EB-4E4D-BA99-274E4E0EFAC9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Kal</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FB3A15CC-F758-4313-825E-0DEB709BF362</key>
+		<string>git://github.com/bradeaton/Kal.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>src/Kal.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FB3A15CC-F758-4313-825E-0DEB709BF362</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>git://github.com/bradeaton/Kal.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FB3A15CC-F758-4313-825E-0DEB709BF362</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FB3A15CC-F758-4313-825E-0DEB709BF362</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Kal</string>
+		</dict>
+	</array>
+</dict>
+</plist>

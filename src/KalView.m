@@ -8,6 +8,8 @@
 #import "KalLogic.h"
 #import "KalPrivate.h"
 
+#define iPad    UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
+
 @interface KalView ()
 - (void)addSubviewsToHeaderView:(UIView *)headerView;
 - (void)addSubviewsToContentView:(UIView *)contentView;
@@ -130,20 +132,47 @@ static const CGFloat kMonthLabelHeight = 17.f;
   NSArray *fullWeekdayNames = [[[[NSDateFormatter alloc] init] autorelease] standaloneWeekdaySymbols];
   NSUInteger firstWeekday = [[NSCalendar currentCalendar] firstWeekday];
   NSUInteger i = firstWeekday - 1;
-  for (CGFloat xOffset = 0.f; xOffset < headerView.width; xOffset += 46.f, i = (i+1)%7) {
-    CGRect weekdayFrame = CGRectMake(xOffset, 30.f, 46.f, kHeaderHeight - 29.f);
-    UILabel *weekdayLabel = [[UILabel alloc] initWithFrame:weekdayFrame];
-    weekdayLabel.backgroundColor = [UIColor clearColor];
-    weekdayLabel.font = [UIFont boldSystemFontOfSize:10.f];
-    weekdayLabel.textAlignment = UITextAlignmentCenter;
-    weekdayLabel.textColor = [UIColor colorWithRed:0.3f green:0.3f blue:0.3f alpha:1.f];
-    weekdayLabel.shadowColor = [UIColor whiteColor];
-    weekdayLabel.shadowOffset = CGSizeMake(0.f, 1.f);
-    weekdayLabel.text = [weekdayNames objectAtIndex:i];
-    [weekdayLabel setAccessibilityLabel:[fullWeekdayNames objectAtIndex:i]];
-    [headerView addSubview:weekdayLabel];
-    [weekdayLabel release];
-  }
+
+    CGFloat deviceDependentWith;
+    
+    if ( iPad ) {
+        deviceDependentWith = 109.1f;
+    } else {
+        deviceDependentWith = 46.f;
+    }
+    
+//  for (CGFloat xOffset = 0.f; xOffset < headerView.width; xOffset += 46.f, i = (i+1)%7) {
+//    CGRect weekdayFrame = CGRectMake(xOffset, 30.f, 46.f, kHeaderHeight - 29.f);
+//    UILabel *weekdayLabel = [[UILabel alloc] initWithFrame:weekdayFrame];
+//    weekdayLabel.backgroundColor = [UIColor clearColor];
+//    weekdayLabel.font = [UIFont boldSystemFontOfSize:10.f];
+//    weekdayLabel.textAlignment = UITextAlignmentCenter;
+//    weekdayLabel.textColor = [UIColor colorWithRed:0.3f green:0.3f blue:0.3f alpha:1.f];
+//    weekdayLabel.shadowColor = [UIColor whiteColor];
+//    weekdayLabel.shadowOffset = CGSizeMake(0.f, 1.f);
+//    weekdayLabel.text = [weekdayNames objectAtIndex:i];
+//    [weekdayLabel setAccessibilityLabel:[fullWeekdayNames objectAtIndex:i]];
+//    [headerView addSubview:weekdayLabel];
+//    [weekdayLabel release];
+//  }
+    for (CGFloat xOffset = 0.f; xOffset < headerView.width; xOffset += deviceDependentWith, i = (i+1)%7) {
+        CGRect weekdayFrame = CGRectMake(xOffset, 30.f, deviceDependentWith, kHeaderHeight - 29.f);
+        UILabel *weekdayLabel = [[UILabel alloc] initWithFrame:weekdayFrame];
+        weekdayLabel.backgroundColor = [UIColor clearColor];
+        if (iPad ) {
+            weekdayLabel.font = [UIFont boldSystemFontOfSize:14.f];
+        } else {
+            weekdayLabel.font = [UIFont boldSystemFontOfSize:10.f];            
+        }
+        weekdayLabel.textAlignment = UITextAlignmentCenter;
+        weekdayLabel.textColor = [UIColor colorWithRed:0.3f green:0.3f blue:0.3f alpha:1.f];
+        weekdayLabel.shadowColor = [UIColor whiteColor];
+        weekdayLabel.shadowOffset = CGSizeMake(0.f, 1.f);
+        weekdayLabel.text = [weekdayNames objectAtIndex:i];
+        [weekdayLabel setAccessibilityLabel:[fullWeekdayNames objectAtIndex:i]];
+        [headerView addSubview:weekdayLabel];
+        [weekdayLabel release];
+    }
 }
 
 - (void)addSubviewsToContentView:(UIView *)contentView

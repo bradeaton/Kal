@@ -57,6 +57,11 @@ NSString *const KalDataSourceChangedNotification = @"KalDataSourceChangedNotific
   return [self initWithSelectedDate:[NSDate date]];
 }
 
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    return [self init];
+}
+
 - (KalView*)calendarView { return (KalView*)self.view; }
 
 - (void)setDataSource:(id<KalDataSource>)aDataSource
@@ -183,15 +188,22 @@ NSString *const KalDataSourceChangedNotification = @"KalDataSourceChangedNotific
 {
   if (!self.title)
     self.title = @"Calendar";
-  KalView *kalView = [[[KalView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] delegate:self logic:logic] autorelease];
-  self.view = kalView;
-  tableView = kalView.tableView;
-  tableView.dataSource = dataSource;
-  tableView.delegate = delegate;
-  [tableView retain];
-  [kalView selectDate:[KalDate dateFromNSDate:self.initialDate]];
-  [self reloadData];
+    KalView *kalView = [[[KalView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] delegate:self logic:logic] autorelease];
+    
+    self.view = kalView;
+    tableView = kalView.tableView;
+    tableView.dataSource = dataSource;
+    tableView.delegate = delegate;
+    [tableView retain];
+    [kalView selectDate:[KalDate dateFromNSDate:self.initialDate]];
+    [self reloadData];
 }
+
+-(void)viewDidLoad {
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+}
+
 
 - (void)viewDidUnload
 {
